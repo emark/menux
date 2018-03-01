@@ -1,0 +1,13 @@
+% layout 'default';
+% title 'Комплекты питания';
+<h1>Комплекты питания на <%= $docdate %></h1>
+
+<p class="lead">
+<%= link_to 'Расчёт блюд' => "/daily/$docdate/order/" => ('target' => '_blank', 'class' => 'd-print-none') %></br>
+</p>
+
+<ol>
+% foreach my $item(@{$items}){
+	<li><%= link_to $item->[1] => "/daily/$docdate/$item->[0]/" => ('target' => '_blank') %> <%= link_to 'X' => "/daily/$docdate/$item->[0]/delete/" => ('class' => 'd-print-none') %></li>
+% };
+</ol>

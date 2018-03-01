@@ -1,0 +1,61 @@
+% layout 'default';
+% title 'Новый комплекс';
+<h1>Новый комплекс</h1>
+
+<form method="post" action="">
+
+<div class="form-row">
+<div class="form-group">
+<input type=date name="docdate" class="form-control">
+</div>
+</div>
+
+<div class="form-row">
+<div class="form-group col-md-12">
+    <label for="exampleFormControlSelect1">ФИО гостя</label>
+    <select name="person" class="form-control" id="exampleFormControlSelect1">
+% foreach my $person(@{$persons}){
+		<option value="<%= $person->[0] %>"><%= $person->[1] %></option>
+% }
+		</select>
+</div>
+</div>
+
+<div class="form-row">
+
+<div class="form-group col-md-4">
+    <label for="exampleFormControlSelect1">Завтрак (B)</label>
+    <select name="menu_B" class="form-control" id="exampleFormControlSelect1">
+% foreach my $menu(@{$menus}){
+		<option value="<%= $menu->[0] %>"><%= $menu->[1] %></option>
+% }
+		</select>
+</div>
+
+<div class="form-group col-md-4">
+    <label for="exampleFormControlSelect1">Обед (L)</label>
+    <select name="menu_L" class="form-control" id="exampleFormControlSelect1">
+% foreach my $menu(@{$menus}){
+		<option value="<%= $menu->[0] %>"><%= $menu->[1] %></option>
+% }
+		</select>
+</div>
+
+<div class="form-group col-md-4">
+    <label for="exampleFormControlSelect1">Ужин (D)</label>
+    <select name="menu_D" class="form-control" id="exampleFormControlSelect1">
+% foreach my $menu(@{$menus}){
+		<option value="<%= $menu->[0] %>"><%= $menu->[1] %></option>
+% }
+		</select>
+</div>
+
+</div>
+
+<br/>
+<input type=submit value="Сохранить" class="btn btn-primary">
+<%= link_to 'Отмена' => "/daily/" => ('class' => 'btn btn-outline-primary') %>
+</form>
+
+
+

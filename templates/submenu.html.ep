@@ -1,0 +1,12 @@
+% layout 'default';
+% title 'Состав меню';
+<h1>Состав меню</h1>
+
+<ul>
+% foreach my $item(@{$items}){
+	<li><%= $item->[1] %> / <%= link_to 'B' => "/submenu/$item->[0]/B/" %> / 
+	<%= link_to 'L' => "/submenu/$item->[0]/L/" %> /
+	<%= link_to 'D' => "/submenu/$item->[0]/D/" %></li>
+% };
+</ul>
+

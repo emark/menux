@@ -1,0 +1,12 @@
+% layout 'default';
+% title 'Daily';
+<h1><%= $docdate  %></h1>
+
+Подтвердите удаление персонального комплекта меню
+
+%= form_for '' => (method => 'POST') => begin
+	%= submit_button
+% end
+
+<br/>
+<%= link_to 'Отмена' => "/daily/$docdate/" => ('class' => 'btn btn-outline-primary') %>

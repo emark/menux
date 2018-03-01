@@ -1,0 +1,13 @@
+% layout 'default';
+% title 'Daily';
+<h1>Комплексы</h1>
+
+<p>
+<%= link_to 'Создать новый' => "/daily/new/" => ('class' => 'lead') %>
+</p>
+
+<ul>
+% foreach my $item(@{$items}){
+	<li><%= link_to $item->[0] => "/daily/$item->[0]/" %></li>
+% };
+</ul>

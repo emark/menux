@@ -1,0 +1,14 @@
+% layout 'default';
+% title $reference;
+<h1><%= $reference %></h1>
+
+<p>
+<%= link_to 'Создать новый' => "/$reference/0/edit/" => ('class' => 'lead') %>
+</p>
+
+<ul>
+% foreach my $item(@{$items}){
+	<li><%= link_to $item->[1] => "/$reference/$item->[0]/edit/" %></li>
+% };
+</ul>
+

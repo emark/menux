@@ -1,0 +1,45 @@
+% layout 'default';
+% title $person;
+<h1>Набор питания</h1>
+<p><b><%= $docdate %></b></p>
+
+% my %type = ();
+% foreach my $key(@{$types}){
+	% $type{$key->[0]} = $key->[1];
+% };
+
+Список блюд
+<ol>
+% my %submenu = ();
+
+% foreach my $item(@{$items}){
+	<li><%= $item->[1] %>, <%= $item->[2] %></li>
+	% push (@{$submenu{$item->[0]}}, $item->[1]);
+% };
+</ol>
+
+Набор питания получил: ___________ /<%= $person %>/
+
+<br/><br/>
+<hr/>
+<p><%= $docdate %></p>
+<h2>Завтрак (<%= $type{'B'} %>)</h2>
+<ol>
+% foreach my $item (@{$submenu{'B'}}){
+	<li><%= $item%></li>
+% };
+</ol>
+
+<h2>Обед (<%= $type{'L'} %>)</h2>
+<ol>
+% foreach my $item (@{$submenu{'L'}}){
+	<li><%= $item%></li>
+% };
+</ol>
+
+<h2>Ужин (<%= $type{'D'} %>)</h2>
+<ol>
+% foreach my $item (@{$submenu{'D'}}){
+	<li><%= $item%></li>
+% };
+</ol>

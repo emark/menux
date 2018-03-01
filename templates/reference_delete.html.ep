@@ -1,0 +1,12 @@
+% layout 'default';
+% title $reference;
+<h1><%= $reference %></h1>
+
+<p class=lead>Подтвердите удаление</p>
+%= form_for '' => (method => 'POST', class => 'lead') => begin	
+	%= submit_button
+	
+% end;
+
+<br/>
+<%= link_to 'Отмена' => "/$reference/" => ('class' => 'btn btn-outline-primary') %>

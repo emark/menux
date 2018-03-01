@@ -1,0 +1,13 @@
+% layout 'default';
+% title $reference;
+<h1><%= $reference %></h1>
+
+%= form_for '' => (method => 'POST') => begin
+	%= text_field 'name' => $name
+	%= submit_button
+% end
+
+<br/>
+<%= link_to 'Отмена' => "/$reference/" => ('class' => 'btn btn-outline-primary') %>
+<%= link_to 'Удалить' => "/$reference/$id/delete/" => ('class' => 'btn btn-danger') %>
+

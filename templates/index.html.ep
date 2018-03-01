@@ -1,0 +1,6 @@
+% layout 'default';
+% title 'Меню комплекс';
+<h1 class="text-center">Добро пожаловать!</h1>
+<p class="lead text-center">
+Для начала работы нажмите <a href="/daily/">здесь</a>
+</p>

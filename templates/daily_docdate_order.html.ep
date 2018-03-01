@@ -1,0 +1,10 @@
+% layout 'default';
+% title 'Расчет блюд';
+<h1>Расчет блюд на <%= $docdate %></h1>
+
+<table border=1>
+<thead><th>Блюдо</th><th>Выход</th><th>Кол.</th></thead>
+% foreach my $item(@{$items}){
+	<tr><td><%= $item->[0] %></td><td><%= $item->[1] %></td><td><%= $item->[2] %></td></tr>
+% };
+</table>
