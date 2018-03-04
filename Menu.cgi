@@ -109,7 +109,7 @@ get '/daily/:docdate/order/' => sub{
 			docdate => $c->param('docdate'),
 		},
 		join => ['inner join submenu on submenu.menu_id = daily.menu_id'],
-		append => ' and daily.type = submenu.type group by submenu.id',
+		append => ' and daily.type = submenu.type group by submenu.name, submenu.yield',
 	)->fetch_all;
 
  	$c->render(
@@ -122,7 +122,7 @@ get '/daily/:docdate/:person_id/' => sub{
 	my $c = shift;
 	
 	my $result = $dbi->select(
-		column => ['submenu.type','name', 'yield'],
+		column => ['submenu.type', 'name', 'yield'],
 		table => 'daily',
 		where => {
 			docdate => $c->param('docdate'),

@@ -11,16 +11,16 @@
     <title><%= title %></title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/menu/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/bootstrap/dist/css/starter-template.css" rel="stylesheet">
+    <link href="/menu/bootstrap/dist/css/starter-template.css" rel="stylesheet">
   </head>
 
   <body>
 
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="/daily/">МК</a>
+      <a class="navbar-brand" href="/menu/daily/">МК</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -28,14 +28,14 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/person/">Люди</a>
+            <a class="nav-link" href="/menu/person/">Люди</a>
           </li>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Меню</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="/menu/">Недели</a>
-              <a class="dropdown-item" href="/submenu/">Состав меню</a>
+              <a class="dropdown-item" href="/menu/menu/">Недели</a>
+              <a class="dropdown-item" href="/menu/submenu/">Состав меню</a>
             </div>
           </li>
         </ul>
@@ -54,9 +54,9 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="/bootstrap/assets/js/vendor/popper.min.js"></script>
-    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/menu/bootstrap/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="/menu/bootstrap/assets/js/vendor/popper.min.js"></script>
+    <script src="/menu/bootstrap/dist/js/bootstrap.min.js"></script>
   </body>
 </html>
 
