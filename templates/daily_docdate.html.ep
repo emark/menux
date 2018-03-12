@@ -3,11 +3,17 @@
 <h1>Комплекты питания на <%= $docdate %></h1>
 
 <p class="lead">
+<%= link_to 'Добавить комплекс' => "/daily/new/" => ('class' => 'd-print-none') %></br>
+</p>
+
+<p class="lead">
 <%= link_to 'Расчёт блюд' => "/daily/$docdate/order/" => ('target' => '_blank', 'class' => 'd-print-none') %></br>
 </p>
 
-<ol>
+<table>
 % foreach my $item(@{$items}){
-	<li><%= link_to $item->[1] => "/daily/$docdate/$item->[0]/" => ('target' => '_blank') %> <%= link_to 'X' => "/daily/$docdate/$item->[0]/delete/" => ('class' => 'd-print-none') %></li>
+	<tr><td><%= link_to $item->[1] => "/daily/$docdate/$item->[0]/" => ('target' => '_blank') %></td><td>
+	<%= link_to 'X' => "/daily/$docdate/$item->[0]/delete/" => ('class' => 'btn btn-outline-danger d-print-none') %></td><td>
+	<%= link_to $item->[2] => "/daily/$docdate/$item->[0]/close/$item->[2]/" => ('class' => 'btn btn-outline-dark d-print-none') %></td></tr>
 % };
-</ol>
+</table>

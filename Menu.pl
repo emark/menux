@@ -43,11 +43,13 @@ get '/daily/new/' => sub{
 	my $persons = $dbi->select(
 		columns => ['id','name'],
 		table => 'person',
+		where => {flag => 0},
 	)->fetch_all;
 
 	my $menus = $dbi->select(
 		columns => ['id','name'],
 		table => 'menu',
+		where => {flag => 0},
 	)->fetch_all;
 
 	$c->render(
@@ -62,11 +64,11 @@ get '/daily/:docdate/' => sub{
 	my $c = shift;
 	my $docdate = $c->param('docdate');
 	my $result = $dbi->select(
-		column => ['person_id','name'],
+		column => ['person_id', 'name', 'close'],
 		table => 'daily',
 		where => {docdate => $docdate},
 		join => ['inner join person on person.id = daily.person_id'],
-		append => ('group by person_id'),
+		append => ('group by person_id, close'),
 	)->fetch_all;
 
 	$c->render(
@@ -75,9 +77,26 @@ get '/daily/:docdate/' => sub{
 	);
 };
 
+get '/daily/:docdate/:person_id/close/:close/' => sub{
+	my $c = shift;
+	my $docdate = $c->param('docdate');
+	my $person_id = $c->param('person_id');
+	my $close = $c->param('close') ? 0 : 1;
+
+	$dbi->update(
+		{close => $close},
+		table => 'daily',
+		where => {
+			docdate => $docdate,
+			person_id => $person_id,
+		},
+	);
+
+	$c->redirect_to("/daily/$docdate/");
+};
+
 get '/daily/:docdate/:person_id/delete/' => sub{
 	my $c = shift;
-	
 	
 	$c->render(
 		template => 'daily_docdate_person_delete',
@@ -282,6 +301,33 @@ get '/:reference/:id/archive/:flag/' => sub{
   	) || '';
 
 	$c->redirect_to("/".$reference);
+};
+
+get '/:reference/:id/report/' => sub{
+	my $c = shift;
+	my $reference = $c->param('reference');
+	my $id = $c->param('id');
+	my %ref_id = (menu => 'menu_id', person => 'person_id');
+
+	my $items = $dbi->select(
+		column => ['docdate'],
+		table => 'daily',
+		where => {$ref_id{$reference} => $id},
+		append => 'group by docdate',
+	)->fetch_all;
+
+	my $ref_name = $dbi->select(
+		column => ['name'],
+		table => $reference,
+		where => {id => $id},
+	)->value;
+	
+	$c->render(
+		items => $items,
+		template => 'reference_report',
+		reference => $reference,
+		ref_name => $ref_name,
+	);
 };
 
 get '/:reference/:id/edit/' => sub{

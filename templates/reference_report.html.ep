@@ -1,0 +1,12 @@
+% layout 'default';
+% title $reference;
+<h1><%= $ref_name %></h1>
+
+<p class=lead>Отчет по питанию</p>
+
+<ol>
+
+% foreach my $item (@{$items}){
+	<li><%= link_to $item->[0] => "/daily/$item->[0]/" %></li>
+% }
+</ol>
