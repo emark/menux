@@ -244,6 +244,7 @@ get '/:reference/' => sub{
 	my $reference = $c->param('reference');
 	my $result = $dbi->select(
 		table => $reference,
+		where => {flag => 0},
   	);
 	
 	$c->render(
@@ -251,6 +252,36 @@ get '/:reference/' => sub{
 		items => $result->fetch_all,
 		reference => $reference
 	);
+};
+
+get '/:reference/archive/' => sub{
+	my $c = shift;
+	my $reference = $c->param('reference');
+	my $result = $dbi->select(
+		table => $reference,
+		where => {flag => 1},
+  	);
+	
+	$c->render(
+		template => 'reference',
+		items => $result->fetch_all,
+		reference => $reference
+	);
+};
+
+get '/:reference/:id/archive/:flag/' => sub{
+	my $c = shift;
+	my $reference = $c->param('reference');
+	my $id = $c->param('id');
+	my $flag = $c->param('flag') ? 0 : 1;
+	
+	my $result = $dbi->update(
+			{flag => $flag},
+			table => $reference,
+			where => {id => $id},
+  	) || '';
+
+	$c->redirect_to("/".$reference);
 };
 
 get '/:reference/:id/edit/' => sub{
