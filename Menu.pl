@@ -312,7 +312,7 @@ get '/:reference/:id/report/' => sub{
 	my $items = $dbi->select(
 		column => ['docdate'],
 		table => 'daily',
-		where => {$ref_id{$reference} => $id},
+		where => {$ref_id{$reference} => $id, close => 1},
 		append => 'group by docdate',
 	)->fetch_all;
 
