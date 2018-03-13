@@ -10,9 +10,11 @@
 <%= link_to 'Создать новый' => "/$reference/0/edit/" => ('class' => 'lead') %>
 </p>
 
+% my $n = 1;
+
 <table>
 % foreach my $item(@{$items}){
-	<tr><td><%= link_to $item->[1] => "/$reference/$item->[0]/edit/" %></td>
+	<tr><td><%= $n++ %>.</td><td><%= link_to $item->[1] => "/$reference/$item->[0]/edit/" %></td>
 	<td><%= link_to 'A' => "/$reference/$item->[0]/archive/$item->[2]/" => (class => 'btn btn-outline-info') %></td>
 	<td><%= link_to 'R' => "/$reference/$item->[0]/report/" => (class => 'btn btn-outline-info') %></td></tr>
 % };
