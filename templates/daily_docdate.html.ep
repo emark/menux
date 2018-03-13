@@ -10,9 +10,10 @@
 <%= link_to 'Расчёт блюд' => "/daily/$docdate/order/" => ('target' => '_blank', 'class' => 'd-print-none') %></br>
 </p>
 
+% my $n = 1;
 <table>
 % foreach my $item(@{$items}){
-	<tr><td><%= link_to $item->[1] => "/daily/$docdate/$item->[0]/" => ('target' => '_blank') %></td><td>
+	<tr><td><%= $n++ %>.</td><td><%= link_to $item->[1] => "/daily/$docdate/$item->[0]/" => ('target' => '_blank') %></td><td>
 	<%= link_to 'X' => "/daily/$docdate/$item->[0]/delete/" => ('class' => 'btn btn-outline-danger d-print-none') %></td><td>
 	<%= link_to $item->[2] => "/daily/$docdate/$item->[0]/close/$item->[2]/" => ('class' => 'btn btn-outline-dark d-print-none') %></td></tr>
 % };
