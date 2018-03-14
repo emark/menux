@@ -206,6 +206,7 @@ get '/submenu/' => sub{
 
 	my $result = $dbi->select(
 		table => 'menu',
+		where => {flag => 0},
 	)->fetch_all;
 	
 	$c->render(
