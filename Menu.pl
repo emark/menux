@@ -27,7 +27,7 @@ get '/daily/' => sub{
 	my $c = shift;
 
 	my $result = $dbi->select(
-		column => ['docdate'],
+		column => ['docdate', 'count(person_id)', 'sum(close)'],
 		table => 'daily',
 		append => ('group by docdate'),
 	)->fetch_all;
