@@ -22,7 +22,7 @@
 
 <br/><br/>
 <hr/>
-<p><%= $docdate %></p>
+<p><%= $person %>, <%= $docdate %></p>
 <h2>Завтрак (<%= $type{'B'} %>)</h2>
 <ol>
 % foreach my $item (@{$submenu{'B'}}){
