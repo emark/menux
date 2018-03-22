@@ -13,11 +13,9 @@
 
 %	my $max_col = 3;
 %	my $max_row = 5;
-% 	my $n = $max_row; #Count of items
 
 <div class="row">
 	<div class="col-<%= 12/$max_col %>">
-		<p><%= $n %></p>
 		<ul>
 
 % foreach my $item(@{$items}){
@@ -46,13 +44,11 @@
 		%	};
 		
 	<div class="col-<%= 12/$max_col %>">
-		<p><%= $n %></p>
 		<ul>
 			
 			% $row = 1;
 			
 	% }
-	% $n++;
 	
 % };
 
