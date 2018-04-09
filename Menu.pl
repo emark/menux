@@ -20,7 +20,7 @@ my $dbi = DBIx::Custom->connect(
 get '/' => sub {
 	my $c = shift;
   	
-	$c->render(template => 'index');
+	$c->redirect_to('/daily/');
 };
 
 get '/daily/' => sub{
