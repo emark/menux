@@ -44,6 +44,7 @@ get '/daily/new/' => sub{
 		columns => ['id','name'],
 		table => 'person',
 		where => {flag => 0},
+		append => 'order by name',
 	)->fetch_all;
 
 	my $menus = $dbi->select(
