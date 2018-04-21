@@ -26,9 +26,16 @@ get '/' => sub {
 get '/daily/' => sub{
 	my $c = shift;
 
+	my @ctime = localtime;
+	$ctime[4]++;
+	$ctime[5] = $ctime[5]+1900;
+	
+	my $filter = $c->param('filter') ? '' : "month(docdate) = $ctime[4] and year(docdate) = $ctime[5]";
+	
 	my $result = $dbi->select(
 		column => ['docdate', 'count(person_id)', 'sum(close)'],
 		table => 'daily',
+		where => $filter,
 		append => ('group by docdate'),
 	)->fetch_all;
 	

@@ -2,6 +2,8 @@
 % title 'Daily';
 <h1>Комплексы</h1>
 
+<%= link_to 'Показать все даты' => '/daily/?filter=true' %>
+
 <p>
 <%= link_to 'Создать новый' => "/daily/new/" => ('class' => 'lead') %>
 </p>
