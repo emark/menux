@@ -13,11 +13,14 @@
 % my $n = 1;
 <table>
 
-% my @style = ();
-% $style[1] = 'green';
+% my @color_green = ();
+% $color_green[1] = 'green';
+% my @text_strikethrough = ();
+% $text_strikethrough[1] = 'text_strikethrough';
+
 % foreach my $item(@{$items}){
-	<tr><td><%= $n++ %>.</td><td><%= link_to $item->[1] => "/daily/$docdate/$item->[0]/" => ('target' => '_blank') %></td><td>
+	<tr><td><%= $n++ %>.</td><td><%= link_to $item->[1] => "/daily/$docdate/$item->[0]/" => ('target' => '_blank', 'class' => "$text_strikethrough[$item->[2]]") %></td><td>
 	<%= link_to 'X' => "/daily/$docdate/$item->[0]/delete/" => ('class' => 'btn btn-outline-danger d-print-none') %></td><td>
-	<%= link_to $item->[2] => "/daily/$docdate/$item->[0]/close/$item->[2]/" => ('class' => "btn btn-outline-dark d-print-none $style[$item->[2]] ") %></td></tr>
+	<%= link_to $item->[2] => "/daily/$docdate/$item->[0]/close/$item->[2]/" => ('class' => "btn btn-outline-dark d-print-none $color_green[$item->[2]] ") %></td></tr>
 % };
 </table>
