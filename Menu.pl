@@ -76,7 +76,7 @@ get '/daily/:docdate/' => sub{
 		table => 'daily',
 		where => {docdate => $docdate},
 		join => ['inner join person on person.id = daily.person_id'],
-		append => ('group by person_id, close'),
+		append => ('group by person_id, close order by name'),
 	)->fetch_all;
 
 	$c->render(
