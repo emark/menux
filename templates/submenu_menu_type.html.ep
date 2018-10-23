@@ -6,7 +6,7 @@
 
 <ul>
 % foreach my $item(@{$items}){
-	<li><%= $item->[1] %> | <%= $item->[2] %> <%= link_to 'X' => "/submenu/$menu_id/$type/$item->[0]/" %></li>
+	<li><%= $item->[1] %> | <%= $item->[2] %> | <%= $item->[3] %> <%= link_to 'X' => "/submenu/$menu_id/$type/$item->[0]/" %></li>
 % };
 </ul>
 
@@ -14,6 +14,7 @@
 %= form_for '' => (method => 'POST') => begin
 	%= text_field 'name'
 	%= text_field 'yield'
+	%= text_field 'calories'
 	%= submit_button
 
 % end

@@ -8,19 +8,22 @@
 	% $type{$key->[0]} = $key->[1];
 % };
 
-Список блюд
-<ol>
+
 % my %submenu = ();
+% my $total_calories = 0;
+<b>Состав комплекта:</b> 
 
 % foreach my $item(@{$items}){
-	<li><%= $item->[1] %>, <%= $item->[2] %></li>
+	<%= $item->[1] %> - <%= $item->[2] %>;
+	%	$total_calories = $total_calories+$item->[3];
 	% push (@{$submenu{$item->[0]}}, $item->[1]);
 % };
-</ol>
 
+Калорийность: <%= $total_calories %>
+<p>
 Набор питания получил: ___________ /<%= $person %>/
+</p>
 
-<br/><br/>
 <hr/>
 <p><%= $person %>, <%= $docdate %></p>
 <h2>Завтрак (<%= $type{'B'} %>)</h2>

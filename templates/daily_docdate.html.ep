@@ -3,11 +3,8 @@
 <h1>Комплекты питания на <%= $docdate %></h1>
 
 <p class="lead">
-<%= link_to 'Добавить комплекс' => "/daily/new/" => ('class' => 'd-print-none') %></br>
-</p>
-
-<p class="lead">
-<%= link_to 'Расчёт блюд' => "/daily/$docdate/order/" => ('target' => '_blank', 'class' => 'd-print-none') %></br>
+<%= link_to 'Добавить комплекс' => "/daily/new/" => ('class' => 'd-print-none') %> &nbsp;
+<%= link_to 'Расчёт блюд' => "/daily/$docdate/order/" => ('target' => '_blank', 'class' => 'd-print-none') %>
 </p>
 
 % my $n = 1;

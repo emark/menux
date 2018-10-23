@@ -130,13 +130,13 @@ get '/daily/:docdate/order/' => sub{
 	my $c = shift;
 	
 	my $result = $dbi->select(
-		column => ['name', 'yield', 'count(1) as pcs'],
+		column => ['name', 'yield', 'calories','count(1) as pcs'],
 		table => 'daily',
 		where => {
 			docdate => $c->param('docdate'),
 		},
 		join => ['inner join submenu on submenu.menu_id = daily.menu_id'],
-		append => ' and daily.type = submenu.type group by submenu.name, submenu.yield',
+		append => ' and daily.type = submenu.type group by submenu.name, submenu.yield, submenu.calories',
 	)->fetch_all;
 
  	$c->render(
@@ -149,7 +149,7 @@ get '/daily/:docdate/:person_id/' => sub{
 	my $c = shift;
 	
 	my $result = $dbi->select(
-		column => ['submenu.type', 'name', 'yield'],
+		column => ['submenu.type', 'name', 'yield', 'calories'],
 		table => 'daily',
 		where => {
 			docdate => $c->param('docdate'),
@@ -244,6 +244,7 @@ any '/submenu/:menu_id/:type/' => sub{
 			{
 				name => $c->param('name'),
 				yield => $c->param('yield'),
+				calories => $c->param('calories') || 0,
 				menu_id => $c->param('menu_id'),
 				type => $c->param('type'),
 			},
@@ -253,7 +254,7 @@ any '/submenu/:menu_id/:type/' => sub{
 	};
 
 	$result = $dbi->select(
-		column => ['id','name','yield'],
+		column => ['id','name','yield','calories'],
 		table => 'submenu',
 		where => {
 			menu_id => $c->param('menu_id'),
