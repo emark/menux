@@ -4,12 +4,12 @@
 
 <%= link_to 'Отмена' => "/submenu/" => ('class' => 'lead')%>
 
-<ul>
+<table border=1>
 % foreach my $item(@{$items}){
-	<li><%= $item->[1] %> | <%= $item->[2] %> | <%= $item->[3] %> <%= link_to 'X' => "/submenu/$menu_id/$type/$item->[0]/" %></li>
+	<tr><td><%= $item->[1] %></td><td><%= $item->[2] %></td><td><%= $item->[3] %></td><td><%= link_to 'X' => "/submenu/$menu_id/$type/$item->[0]/" %></td></tr>
 % };
-</ul>
-
+</table>
+<br/>
 
 %= form_for '' => (method => 'POST') => begin
 	%= text_field 'name'
