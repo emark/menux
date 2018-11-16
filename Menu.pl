@@ -186,18 +186,30 @@ get '/daily/:docdate/:person_id/' => sub{
 
 post '/daily/new/' => sub{
 	my $c = shift;
+	my $docdate = $c->param('docdate');
+	my $pid = $c->param('person');
 	my $d = [
-		{docdate => $c->param('docdate'), person_id => $c->param('person'), menu_id => $c->param('menu_B'), type => 'B'},
-		{docdate => $c->param('docdate'), person_id => $c->param('person'), menu_id => $c->param('menu_L'), type => 'L'},
-		{docdate => $c->param('docdate'), person_id => $c->param('person'), menu_id => $c->param('menu_D'), type => 'D'},
+		{docdate => $docdate, person_id => $pid, menu_id => $c->param('menu_B'), type => 'B'},
+		{docdate => $docdate, person_id => $pid, menu_id => $c->param('menu_L'), type => 'L'},
+		{docdate => $docdate, person_id => $pid, menu_id => $c->param('menu_D'), type => 'D'},
 	];
 
-	if($c->param('docdate')){
+	my $person = '';
+
+	if($pid && $docdate){
+		$person = $dbi->select(
+			table => 'person',
+			column => 'name',
+			where => {id => $pid},
+		)->value;
+	}
+
+	if($docdate){
 		$dbi->delete(
 			table => 'daily',
 			where => {
-				docdate => $c->param('docdate'),
-				person_id => $c->param('person'),
+				docdate => $docdate,
+				person_id => $pid,
 			},
 		);
 		$dbi->insert(
@@ -206,7 +218,8 @@ post '/daily/new/' => sub{
 		);
 	};
 
-	$c->redirect_to('/daily/');
+	$c->flash(message => "$person на $docdate добавлен новый комплекс питания");
+	$c->redirect_to('/daily/new/');
 };
 
 get '/submenu/' => sub{
